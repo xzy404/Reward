@@ -1,0 +1,7 @@
+{
+  "name": "hydro-award",
+  "version": "1.0.0",
+  "description": "洛谷风格奖项认证插件:用户名旁奖项钩子图标、用户卡片奖项列表、root 管理页(/reward)",
+  "main": "index.ts",
+  "dependencies": {}
+}

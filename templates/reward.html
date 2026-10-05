@@ -1,0 +1,205 @@
+{% extends "layout/basic.html" %}
+{% block content %}
+<div class="row">
+  <div class="medium-12 columns">
+    <div class="section">
+      <header class="section__header">
+        <h1 class="section__title">奖项认证管理</h1>
+      </header>
+      <div class="section__body">
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:14px">
+          <input id="add-uid" type="number" min="1" placeholder="用户 UID" style="width:110px;border:1px solid #d8d8d8;border-radius:6px;padding:6px 8px">
+          <select id="add-level" style="width:120px;border:1px solid #d8d8d8;border-radius:6px;padding:6px 8px">
+            {% for i in range(0, 11) %}<option value="{{ i }}">{{ i }} 级</option>{% endfor %}
+          </select>
+          <button class="button primary" id="add-save">设定用户认证等级</button>
+          <span style="color:#999;font-size:12px">颜色规则:1-2 级灰 / 3-5 级绿 / 6-7 级蓝 / 8-10 级金</span>
+        </div>
+        <table class="data-table" id="user-table">
+          <thead><tr><th>UID</th><th>用户名</th><th>奖项认证等级</th><th>获奖记录</th></tr></thead>
+          <tbody>
+            {% for u in users %}
+            <tr class="user-row" data-uid="{{ u.uid }}" data-level="{{ u.level }}" data-nrec="{{ u.nRecords }}">
+              <td>{{ u.uid }}</td>
+              <td>{{ u.uname }}</td>
+              <td class="cell-level" style="color:{{ u.color }}">{{ u.level }} 级</td>
+              <td><a style="cursor:pointer;color:#3498db" href="javascript:;" class="view-records">查看({{ u.nRecords }})</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <div id="user-empty" style="color:#999;font-size:13px;padding:12px 0;display:none">还没有用户,用上方表单设定第一个认证等级</div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  function HOOK_COLOR(level) {
+    if (level >= 1 && level <= 2) return '#BFBFBF';
+    if (level >= 3 && level <= 5) return '#52c41a';
+    if (level >= 6 && level <= 7) return '#3498db';
+    if (level >= 8) return '#ffc116';
+    return '#BFBFBF';
+  }
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  function post(url, data) {
+    var body = Object.keys(data).map(function (k) {
+      return encodeURIComponent(k) + '=' + encodeURIComponent(data[k]);
+    }).join('&');
+    return fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: body,
+    }).then(function (r) { return r.json(); }).then(function (j) { return !!j.ok; }).catch(function () { return false; });
+  }
+  function $(id) { return document.getElementById(id); }
+
+  function syncRow(tr) {
+    var lv = parseInt(tr.getAttribute('data-level'), 10) || 0;
+    var cell = tr.querySelector('.cell-level');
+    cell.textContent = lv + ' 级';
+    cell.style.color = HOOK_COLOR(lv);
+    tr.querySelector('.view-records').textContent = '查看(' + (tr.getAttribute('data-nrec') || 0) + ')';
+  }
+
+  document.querySelectorAll('.user-row').forEach(function (tr) { syncRow(tr); });
+  function updateEmpty() {
+    $('user-empty').style.display = document.querySelectorAll('.user-row').length ? 'none' : '';
+  }
+  updateEmpty();
+
+  /* 添加/设定用户等级 */
+  $('add-save').onclick = function () {
+    var uid = parseInt($('add-uid').value, 10);
+    if (!uid) { alert('请填写 UID'); return; }
+    var level = parseInt($('add-level').value, 10) || 0;
+    post('/reward/setting/save', { uid: uid, level: level }).then(function (ok) {
+      if (ok) location.reload();
+    });
+  };
+
+  /* 弹窗:查看 + 编辑获奖记录 + 设定等级 */
+  var modal = null;
+  var curUid = 0;
+  var curUname = '';
+
+  function closeModal() { if (modal) { modal.remove(); modal = null; } }
+
+  function recordRow(r) {
+    return '<div class="rec-edit-row" data-id="' + esc(r._id) + '" style="display:flex;gap:6px;align-items:center;padding:4px 0;flex-wrap:wrap">'
+      + '<input class="r-year" type="number" value="' + esc(r.year) + '" style="width:74px;border:1px solid #d8d8d8;border-radius:6px;padding:4px 6px">'
+      + '<input class="r-contest" value="' + esc(r.contest) + '" placeholder="项目" style="flex:1;min-width:100px;border:1px solid #d8d8d8;border-radius:6px;padding:4px 6px">'
+      + '<input class="r-prize" value="' + esc(r.prize) + '" placeholder="奖项" style="flex:1;min-width:90px;border:1px solid #d8d8d8;border-radius:6px;padding:4px 6px">'
+      + '<label style="font-size:12px;white-space:nowrap"><input type="checkbox" class="r-hidden"' + (r.hidden ? ' checked' : '') + '> 隐藏</label>'
+      + '<a href="javascript:;" class="r-save" style="cursor:pointer;color:#3498db;font-size:12px;white-space:nowrap">保存</a>'
+      + '<a href="javascript:;" class="r-del" style="cursor:pointer;color:#c44;font-size:12px;white-space:nowrap">删除</a>'
+      + '</div>';
+  }
+
+  function renderRecords(records) {
+    var box = modal.querySelector('#rec-list');
+    if (!records.length) {
+      box.innerHTML = '<div style="color:#999;font-size:13px;padding:6px 0">暂无获奖记录,在下方添加</div>';
+      return;
+    }
+    box.innerHTML = records.map(recordRow).join('');
+    box.querySelectorAll('.rec-edit-row').forEach(function (row) {
+      row.querySelector('.r-save').onclick = function () {
+        post('/reward/record/save', {
+          _id: row.getAttribute('data-id'),
+          uid: curUid,
+          year: row.querySelector('.r-year').value,
+          contest: row.querySelector('.r-contest').value,
+          prize: row.querySelector('.r-prize').value,
+          hidden: row.querySelector('.r-hidden').checked ? '1' : '0',
+        }).then(function (ok) { if (ok) refresh(); else alert('保存失败'); });
+      };
+      row.querySelector('.r-del').onclick = function () {
+        if (!confirm('确定删除该获奖记录?')) return;
+        post('/reward/record/delete', { _id: row.getAttribute('data-id') }).then(function (ok) { if (ok) refresh(); });
+      };
+    });
+  }
+
+  function refresh() {
+    fetch('/reward/records?uid=' + curUid).then(function (r) { return r.json(); }).then(function (j) {
+      renderRecords(j.records || []);
+      var tr = document.querySelector('.user-row[data-uid="' + curUid + '"]');
+      if (tr) {
+        tr.setAttribute('data-nrec', (j.records || []).length);
+        syncRow(tr);
+      }
+    });
+  }
+
+  function openModal(uid, uname) {
+    closeModal();
+    curUid = uid;
+    curUname = uname;
+    var tr = document.querySelector('.user-row[data-uid="' + uid + '"]');
+    var level = tr ? (parseInt(tr.getAttribute('data-level'), 10) || 0) : 0;
+    modal = document.createElement('div');
+    modal.id = 'reward-modal';
+    modal.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.45);z-index:9999;display:flex;align-items:center;justify-content:center';
+    var opts = '';
+    for (var i = 0; i <= 10; i++) opts += '<option value="' + i + '"' + (i === level ? ' selected' : '') + '>' + i + ' 级</option>';
+    modal.innerHTML = '<div style="background:#fff;border-radius:10px;padding:20px;width:560px;max-width:94vw;max-height:84vh;overflow:auto">'
+      + '<h2 style="font-size:16px;margin:0 0 4px">获奖记录 - ' + esc(uname) + ' (UID ' + uid + ')</h2>'
+      + '<div style="display:flex;gap:8px;align-items:center;margin:8px 0 12px;font-size:13px">'
+      + '<span>奖项认证等级:</span><select id="m-level" style="width:100px;border:1px solid #d8d8d8;border-radius:6px;padding:4px 6px">' + opts + '</select>'
+      + '<button class="button primary" id="m-level-save" style="padding:4px 12px">保存等级</button></div>'
+      + '<div style="border-top:1px solid #eee;padding-top:10px;color:#888;font-size:12px;margin-bottom:4px">获奖记录(可修改、隐藏或删除):</div>'
+      + '<div id="rec-list"><div style="color:#999;font-size:13px">加载中…</div></div>'
+      + '<div style="border-top:1px solid #eee;margin-top:10px;padding-top:10px;color:#888;font-size:12px;margin-bottom:4px">添加新记录:</div>'
+      + '<div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">'
+      + '<input id="new-year" type="number" placeholder="年份" style="width:74px;border:1px solid #d8d8d8;border-radius:6px;padding:4px 6px">'
+      + '<input id="new-contest" placeholder="项目(如 CSP-J)" style="flex:1;min-width:120px;border:1px solid #d8d8d8;border-radius:6px;padding:4px 6px">'
+      + '<input id="new-prize" placeholder="奖项(如 一等奖)" style="flex:1;min-width:100px;border:1px solid #d8d8d8;border-radius:6px;padding:4px 6px">'
+      + '<button class="button primary" id="new-add" style="padding:4px 12px">添加</button></div>'
+      + '<div style="display:flex;justify-content:flex-end;margin-top:14px">'
+      + '<button class="button" id="m-close">关闭</button></div></div>';
+    document.body.appendChild(modal);
+    modal.querySelector('#m-close').onclick = closeModal;
+    modal.onclick = function (e) { if (e.target === modal) closeModal(); };
+    modal.querySelector('#m-level-save').onclick = function () {
+      post('/reward/setting/save', { uid: uid, level: modal.querySelector('#m-level').value }).then(function (ok) {
+        if (!ok) { alert('保存失败'); return; }
+        var tr2 = document.querySelector('.user-row[data-uid="' + uid + '"]');
+        if (tr2) {
+          tr2.setAttribute('data-level', modal.querySelector('#m-level').value);
+          syncRow(tr2);
+        }
+      });
+    };
+    modal.querySelector('#new-add').onclick = function () {
+      var contest = modal.querySelector('#new-contest').value.trim();
+      var prize = modal.querySelector('#new-prize').value.trim();
+      if (!contest || !prize) { alert('项目和奖项不能为空'); return; }
+      post('/reward/record/save', {
+        uid: uid,
+        year: modal.querySelector('#new-year').value,
+        contest: contest, prize: prize, hidden: '0',
+      }).then(function (ok) {
+        if (!ok) { alert('添加失败'); return; }
+        modal.querySelector('#new-year').value = '';
+        modal.querySelector('#new-contest').value = '';
+        modal.querySelector('#new-prize').value = '';
+        refresh();
+      });
+    };
+    refresh();
+  }
+
+  document.querySelectorAll('.view-records').forEach(function (a) {
+    a.onclick = function () {
+      var tr = a.closest('.user-row');
+      openModal(parseInt(tr.getAttribute('data-uid'), 10), tr.children[1].textContent);
+    };
+  });
+})();
+</script>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% set layout_name = "basic" %}
+{% extends "layout/html5.html" %}
+{% block body %}
+{% if UserContext %}{% include "partials/nav.html" %}{% endif %}
+<div class="slideout-panel" id="panel">
+  {% if handler.session.legacy and not handler.session.nohint %}
+    <div class="typo hint flex-row flex-main-center flex-cross-center">
+        <p>
+          {{ _('You are currently in legacy mode. Some additional features will be unavailable. We strongly recommend switching to standard mode on a modern browser.') }}
+          <a href="/legacy">{{ _('Standard mode') }}</a> <a href="/legacy?legacy=true&nohint=true">{{ _('Hidden') }}</a>
+        </p>
+    </div>
+  {% endif %}
+  <div class="slideout-overlay"></div>
+  {% if UserContext %}{% include "partials/header_mobile.html" %}{% endif %}
+  <div class="main">
+    {% for item in ui.getNodes('Notification').concat(notification or []) %}{% if item.checker(handler) %}
+      <div class="row typo"><blockquote class="{{ item.args.type }}">{{ _(item.name).format(item.args.args or [])|nl2br|safe }}</blockquote></div>
+    {% endif %}{% endfor %}
+    {% block content %}{% endblock %}
+  </div>
+  {% include "partials/footer.html" %}
+</div>
+{% if UserContext and not handler.user._id %}{% include "partials/login_dialog.html" %}{% endif %}
+{# hydro-award: 全站奖项钩子 + 用户中心奖项卡片(改 award.js 后递增 v 版本号以绕过 CDN 缓存) #}
+<script src="/award/award.js?v=3"></script>
+{% endblock %}
+{% block ogp %}
+{% endblock %}

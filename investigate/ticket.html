@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html data-page="ticket_main" data-layout="basic" class="layout--basic page--ticket_main theme--light nojs" data-mantine-color-scheme="light" lang="" data-app="Hydro">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="canonical" href="https://oj.xzy404.top/ticket">  <meta name="theme-color" content="#56758f">
+    <meta property="og:site_name" content="CatchFish" />
+  <meta property="og:url" content="https://oj.xzy404.top/ticket" />
+  <meta property="og:image" content="/favicon-96x96.png" />
+      <title>工单 - CatchFish</title>
+  <style>
+    body {
+      --font-family: "Open Sans", "Open Sans", "Seravek", "Segoe UI", "Verdana", "PingFang SC", "Hiragino Sans GB", "Lantinghei SC", "Microsoft Yahei", "WenQuanYi Micro Hei", "sans";
+      --code-font-family: "Source Code Pro", "monaco", "Source Code Pro", "Consolas", "Lucida Console", "monospace";
+      --font-ligatures: none !important;
+    }
+          #panel { display: flex; flex-direction: column; }
+      </style>
+      <link rel="stylesheet" media="all" href="/theme-4.58.4.css">
+        <script>
+      var _htmlNode = document.documentElement;
+      _htmlNode.className = _htmlNode.className.replace(' nojs', ' hasjs');
+      window.UiContext = '{"cdn_prefix":"/","cdn_dynamic":false,"url_prefix":"/","ws_prefix":"/","hydroacFeatures":[],"blspHost":"wss://ws.hydrooj.com","constantVersion":"5a70ceab","domainId":"system","domainVersion":1788675778631,"SWConfig":{"preload":"","hosts":["http://oj.xzy404.top","https://oj.xzy404.top","https://oj.xzy404.top/","/"],"assets":[],"domains":[]}}';
+      window.UserContext = '{"_id":0,"mail":"Guest@hydro.local","uname":"Guest","hashType":"hydro","priv":8,"regat":"2026-05-26T12:32:24.720Z","loginat":"2026-05-26T12:32:24.720Z","perm":"BigInt::37483536673142767745","role":"guest","scope":"BigInt::-1","tfa":false,"authn":false,"group":[],"domains":[],"timeZone":"Asia/Shanghai","codeLang":"cc.cc14o2","avatar":"gravatar:Guest@hydro.local","gender":2,"backgroundImage":"/components/profile/backgrounds/1.jpg","pinnedDomains":[],"checkin_time":"1997-01-11","showTimeAgo":true,"fontFamily":"Open Sans","codeFontFamily":"Source Code Pro","theme":"light","preferredEditorType":"sv","formatCode":true,"rpInfo":{},"rp":0,"level":0,"join":true,"avatarUrl":"//gravatar.loli.net/avatar/97119d3d15d5201ab506330ed4bab0f7?d=mm&s=128"}';
+    </script>
+      </head>
+<body>
+      <script type="text/javascript" src="/resource/5a70ceab/entry.js"></script>
+    <script type="text/javascript" src="/resource/4.58.4/lang-zh.js"></script>
+    <script type="text/javascript" src="/hydro-4.58.4.js"></script>
+    <nav class="nav slideout-menu" id="menu">
+  <div class="row"><div class="columns clearfix">
+    <ol class="nav__list nav__list--main clearfix">
+      <li class="nav__list-item">
+        <a href="/"><img class="nav__logo" src="/favicon.ico"></a>
+      </li>        <li class="nav__list-item">
+  <a href="/" class="nav__item">
+    首页
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/p" class="nav__item">
+    题库
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/training" class="nav__item">
+    训练
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/contest" class="nav__item">
+    比赛
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/homework" class="nav__item">
+    作业
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/discuss" class="nav__item">
+    讨论
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/ranking" class="nav__item">
+    排名
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/ticket" class="nav__item nav--active">
+    工单
+  </a>
+</li>
+      </ol>
+    <ol class="nav__list nav__list--secondary clearfix">
+          <li class="nav__list-item"><a href="/login" class="nav__item" name="nav_login">登录</a></li>
+            <li class="nav__list-item"><a href="/register" class="nav__item--round">注册</a></li>
+            <li class="nav__list-item nojs--hide" data-dropdown-pos="bottom right" data-dropdown-custom-class="nav__dropdown" data-dropdown-target="#menu-nav-user" data-dropdown-disabledconstrainToWindow data-dropdown-trigger-desktop-only>
+        <a href="javascript:;" class="nav__item">
+          <span class="icon icon-global"></span>Language <span class="icon icon-expand_more"></span>
+        </a>
+        <ol class="dropdown-target menu" id="menu-nav-user"><li class="menu__item"><a class="menu__link" href="/language/en">English</a></li><li class="menu__item"><a class="menu__link" href="/language/ko">한국어</a></li><li class="menu__item"><a class="menu__link" href="/language/zh">简体中文</a></li><li class="menu__item"><a class="menu__link" href="/language/zh_TW">正體中文</a></li></ol>
+      </li>
+        </ol>
+  </div></div>
+</nav>
+<nav class="nav--shadow"></nav>
+<div class="slideout-panel" id="panel">
+    <div class="slideout-overlay"></div>
+  <div class="header--mobile">
+  <div class="row"><div class="columns clearfix">
+    <div class="float-left">
+      <a class="header--mobile__domain" href="/" target="_self">
+        <img src="/favicon.ico">
+      </a>
+    </div>
+    <div class="float-right">
+      <button type="button" class="header__hamburger">
+  <div class="hamburger hamburger--spin">
+    <span class="hamburger-box">
+      <span class="hamburger-inner"></span>
+    </span>
+  </div>
+</button>
+    </div>
+  </div></div>
+</div>
+  <div class="main">
+        
+<style>
+  .ticket-status {
+    display: inline-block;
+    padding: 1px 10px;
+    border-radius: 999px;
+    color: #fff;
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 500;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+  .ticket-status--pending { background: #3498db; }    /* 待处理：蓝 */
+  .ticket-status--processing { background: #ffc116; } /* 处理中：黄 */
+  .ticket-status--suspended { background: #bfbfbf; }  /* 挂起中：灰 */
+  .ticket-status--completed { background: #52c41a; }  /* 已完成：绿 */
+  .ticket-status--closed { background: #fe4c61; }     /* 已关闭：红 */
+  .ticket-tag--private {
+    display: inline-block;
+    padding: 1px 8px;
+    margin-left: 6px;
+    border: 1px solid #fe4c61;
+    color: #fe4c61;
+    border-radius: 999px;
+    font-size: 12px;
+    line-height: 18px;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+  .ticket-filters { margin: 0 0 10px; padding: 0; }
+  .ticket-filters li { display: inline-block; margin: 0 6px 6px 0; }
+  .ticket-filters a {
+    display: inline-block;
+    padding: 2px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    color: #777;
+    background: transparent;
+    border: 1px solid #ddd;
+  }
+  .ticket-filters a.active { color: #fff; border-color: #3498db; background: #3498db; }
+
+  /* ---------- 动态行：无头像、无灰色胶囊、左侧对齐、正文带时间 ---------- */
+  .ticket-event-item {
+    display: block;
+    list-style: none !important;
+    background: none !important;
+    box-shadow: none !important;
+    padding: 8px 20px 8px 84px; /* 与正常回复正文左侧大致对齐 */
+  }
+  .ticket-event-time {
+    color: #909399;
+    font-size: 13px;
+    margin-right: 10px;
+  }
+  .ticket-event-text {
+    font-size: 14px;
+    color: #333;
+  }
+  /* 状态/公开性/无负责人 token */
+  .ticket-token {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 2px;
+  }
+  .ticket-token--status-pending { color: #3498db; }
+  .ticket-token--status-processing { color: #ffc116; }
+  .ticket-token--status-suspended { color: #bfbfbf; }
+  .ticket-token--status-completed { color: #52c41a; }
+  .ticket-token--status-closed { color: #fe4c61; }
+  .ticket-token--none { color: #909399; }
+  .ticket-flag--public {
+    color: #52c41a;
+    border: 1px solid #52c41a;
+    border-radius: 3px;
+    padding: 0 6px;
+    line-height: 18px;
+  }
+  .ticket-flag--private {
+    color: #fe4c61;
+    border: 1px solid #fe4c61;
+    border-radius: 3px;
+    padding: 0 6px;
+    line-height: 18px;
+  }
+  .ticket-person { white-space: nowrap; }
+  .ticket-person .user-profile-avatar { width: 20px !important; height: 20px !important; }
+  .ticket-unknown { color: #c0c4cc; }
+
+  /* ---------- 回复编辑器：点击占位才展开 ---------- */
+  .ticket-reply-entry {
+    border: 1px dashed #c8cdd3;
+    border-radius: 6px;
+    background: #fafbfc;
+    color: #8b949e;
+    padding: 10px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    user-select: none;
+  }
+  .ticket-reply-entry:hover { border-color: #3498db; color: #3498db; }
+  .ticket-reply-entry--locked {
+    cursor: not-allowed;
+    border-color: #f3c9bd;
+    background: #fff5f5;
+    color: #d4380d;
+  }
+  .ticket-reply-entry--locked:hover { border-color: #f3c9bd; color: #d4380d; }
+
+  /* ---------- 其它 ---------- */
+  .ticket-private-banner {
+    margin: 10px 0 0;
+    padding: 6px 12px;
+    border-radius: 4px;
+    background: #fdecec;
+    color: #d4380d;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .ticket-private-banner .ticket-tag--private { margin-left: 0; margin-right: 6px; }
+  .ticket-note-body { padding-top: 4px; }
+  .ticket-note-head {
+    font-size: 12px;
+    color: #909399;
+    margin-bottom: 6px;
+    font-weight: 600;
+    letter-spacing: .5px;
+  }
+  .ticket-note-content { margin: 4px 0 8px; word-break: break-word; }
+  .ticket-note-empty { color: #c0c4cc; font-size: 13px; }
+  .ticket-note-save { margin-top: 6px; }
+  .ticket-note-edit { font-size: 13px; cursor: pointer; color: #3498db; margin-top: 4px; display: inline-block; }
+  .ticket-note-editor { margin-top: 8px; }
+  .ticket-assign-form { width: 100%; }
+  .ticket-side-form { margin: 0 0 6px; }
+  .ticket-side-form .row { margin: 0; }
+  /* 列表页标题：不加粗、比正文略大 */
+  .ticket-list-title {
+    margin: 0 0 4px;
+    font-size: 16px !important;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  /* 右侧工单分区：当前选中高亮 */
+  .ticket-node--active {
+    color: #3498db !important;
+    font-weight: 600;
+  }
+  .ticket-nodes-hint {
+    font-size: 12px;
+    color: #909399;
+  }
+
+  /* ---------- 锁定标记 ---------- */
+  .ticket-tag--locked {
+    display: inline-block;
+    padding: 1px 8px;
+    margin-left: 6px;
+    border: 1px solid #94a3b8;
+    color: #475569;
+    border-radius: 999px;
+    font-size: 12px;
+    line-height: 18px;
+    white-space: nowrap;
+    vertical-align: middle;
+    background: #f1f5f9;
+  }
+  .ticket-locked-note { color: #94a3b8; font-size: 12px; }
+  .ticket-lock-state { margin-left: 10px; font-size: 12px; }
+  .ticket-lock-state--on { color: #d4380d; }
+  .ticket-lock-state--off { color: #94a3b8; }
+
+  /* ---------- 编辑工单 ---------- */
+  .ticket-edit-entry-li { margin-left: 6px; display: inline-block; }
+  .ticket-edit-form { margin-top: 10px; padding: 12px; border: 1px solid #e1e4e8; border-radius: 6px; background: #fafbfc; }
+  .ticket-edit-form label { display: block; margin-bottom: 8px; }
+  .ticket-edit-form label input,
+  .ticket-edit-form label textarea { width: 100%; margin-top: 4px; }
+  .ticket-danger { color: #d4380d; border-color: #f3c9bd; }
+
+  /* ---------- 分区选择器（按钮+弹出面板） ---------- */
+  .ticket-category-label {
+    display: block;
+    margin-bottom: 4px;
+    color: #57606a;
+  }
+  .ticket-category { position: relative; }
+  .ticket-category-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border: 1px solid #c8cdd3;
+    border-radius: 6px;
+    background: #fff;
+    color: #333;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .ticket-category-button:hover { border-color: #3498db; color: #3498db; }
+  .ticket-category-popover {
+    position: absolute;
+    z-index: 30;
+    top: 100%;
+    left: 0;
+    margin-top: 6px;
+    padding: 8px;
+    background: #fff;
+    border: 1px solid #d0d4d9;
+    border-radius: 6px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, .08);
+    max-width: 360px;
+  }
+  .ticket-category-clear {
+    display: inline-block;
+    margin-bottom: 6px;
+    padding: 3px 10px;
+    border: 1px solid #94a3b8;
+    border-radius: 999px;
+    background: transparent;
+    color: #64748b;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  .ticket-category-clear:hover { background: #94a3b8; color: #fff; }
+  .ticket-category-group { margin-top: 6px; }
+  .ticket-category-group-title {
+    font-size: 12px;
+    color: #94a3b8;
+    margin-bottom: 4px;
+  }
+  .ticket-category-group-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .ticket-category-item {
+    padding: 3px 10px;
+    border: 1px solid #3498db;
+    border-radius: 999px;
+    background: transparent;
+    color: #3498db;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  .ticket-category-item:hover { background: #3498db; color: #fff; }
+
+  /* 工单分区胶囊（列表与详情侧栏共用；与状态胶囊同款造型、中性配色） */
+  .ticket-cat-pill {
+    display: inline-block;
+    padding: 1px 10px;
+    border-radius: 999px;
+    border: 1px solid #9fb3c8;
+    background: #eef4fb;
+    color: #3a7bbf;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 500;
+    white-space: nowrap;
+    vertical-align: middle;
+    text-decoration: none;
+    margin-left: 6px;
+  }
+  .ticket-cat-pill:hover {
+    background: #3a7bbf;
+    border-color: #3a7bbf;
+    color: #fff;
+    text-decoration: none;
+  }
+</style>
+<div class="row">
+  <div class="medium-9 columns">
+    <div class="section">
+      <div class="section__header">
+        <h1 class="section__title">工单</h1>
+        <div class="section__tools">
+                  </div>
+      </div>
+      <div class="section__body">
+        <ul class="ticket-filters">
+          <li><a href="?" class="active">全部</a></li><li><a href="?status=pending" class="">待处理</a></li><li><a href="?status=processing" class="">处理中</a></li><li><a href="?status=suspended" class="">挂起中</a></li><li><a href="?status=completed" class="">已完成</a></li><li><a href="?status=closed" class="">已关闭</a></li></ul>
+          <ol class="section__list discussion__list"><li class="section__list__item discussion__item">
+      <h1 class="discussion__title ticket-list-title">
+        <a href="/ticket/6a9cefbe9d95aaf9dd3d5bba" data-emoji-enabled>发布工单时请选择工单分区</a>
+      </h1>
+      <ul class="supplementary list">
+        <li>
+          <span class="ticket-status ticket-status--pending">待处理</span>
+          <a class="ticket-cat-pill" href="/ticket?node=一般咨询">一般咨询</a>                  </li>
+        <li>3 次浏览</li>
+        <li>
+          <span class="user-profile-link">
+      <img class="small user-profile-avatar v-center" loading="lazy" src="/file/3/.avatar.png" width="20" height="20">
+    <a class="user-profile-name uname--lv3" style="color:#52c41a" href="/user/3">
+          xzy
+      </a>
+  </span>
+
+          @ <span class="time relative" data-timestamp="1788669886.874">2026-9-6 12:44:46</span>
+        </li>
+              </ul>
+    </li><li class="section__list__item discussion__item">
+      <h1 class="discussion__title ticket-list-title">
+        <a href="/ticket/6a9c369496feb5f53b65ac71" data-emoji-enabled>测试</a>
+      </h1>
+      <ul class="supplementary list">
+        <li>
+          <span class="ticket-status ticket-status--completed">已完成</span>
+                            </li>
+        <li>88 次浏览</li>
+        <li>
+          <span class="user-profile-link">
+      <img class="small user-profile-avatar v-center" loading="lazy" src="/file/3/.avatar.png" width="20" height="20">
+    <a class="user-profile-name uname--lv3" style="color:#52c41a" href="/user/3">
+          xzy
+      </a>
+  </span>
+
+          @ <span class="time relative" data-timestamp="1788669851.515">2026-9-6 12:44:11</span>
+        </li>
+                  <li>
+            <span class="icon icon-user"></span>
+            <span class="user-profile-link">
+      <img class="small user-profile-avatar v-center" loading="lazy" src="/file/3/.avatar.png" width="20" height="20">
+    <a class="user-profile-name uname--lv3" style="color:#52c41a" href="/user/3">
+          xzy
+      </a>
+  </span>
+
+          </li>
+              </ul>
+    </li><li class="section__list__item discussion__item">
+      <h1 class="discussion__title ticket-list-title">
+        <a href="/ticket/6a9c4e1d2260d6ca83ec39fb" data-emoji-enabled>锁定没有效果+工单分区</a>
+      </h1>
+      <ul class="supplementary list">
+        <li>
+          <span class="ticket-status ticket-status--completed">已完成</span>
+          <a class="ticket-cat-pill" href="/ticket?node=技术问题">技术问题</a>                  </li>
+        <li>15 次浏览</li>
+        <li>
+          <span class="user-profile-link">
+      <img class="small user-profile-avatar v-center" loading="lazy" src="/file/3/.avatar.png" width="20" height="20">
+    <a class="user-profile-name uname--lv3" style="color:#52c41a" href="/user/3">
+          xzy
+      </a>
+  </span>
+
+          @ <span class="time relative" data-timestamp="1788669218.448">2026-9-6 12:33:38</span>
+        </li>
+                  <li>
+            <span class="icon icon-user"></span>
+            <span class="user-profile-link">
+      <img class="small user-profile-avatar v-center" loading="lazy" src="/file/3/.avatar.png" width="20" height="20">
+    <a class="user-profile-name uname--lv3" style="color:#52c41a" href="/user/3">
+          xzy
+      </a>
+  </span>
+
+          </li>
+              </ul>
+    </li></ol>
+                    <ul class="pager pager-bottom"><li>
+          <span class="pager__item current">1</span>
+        </li></ul>
+
+              </div>
+    </div>
+  </div>
+  <div class="medium-3 columns">
+    
+<div class="section side">
+  <div class="section__header">
+    <h1 class="section__title">工单分区</h1>
+  </div>
+  <div class="section__body"><ul class="group-list"><li class="group-list__item">
+      <h2 class="section__title">综合问题</h2>
+      <ol class="chip-list"><li class="chip-list__item">
+          <a class="typo-a"
+             href="?node=一般咨询">一般咨询</a>
+        </li><li class="chip-list__item">
+          <a class="typo-a"
+             href="?node=问题反馈">问题反馈</a>
+        </li><li class="chip-list__item">
+          <a class="typo-a"
+             href="?node=学术建议">学术建议</a>
+        </li></ol>
+    </li><li class="group-list__item">
+      <h2 class="section__title">题目工单</h2>
+      <ol class="chip-list"><li class="chip-list__item">
+          <a class="typo-a"
+             href="?node=单题供题">单题供题</a>
+        </li><li class="chip-list__item">
+          <a class="typo-a"
+             href="?node=题目综合">题目综合</a>
+        </li><li class="chip-list__item">
+          <a class="typo-a"
+             href="?node=文本修缮">文本修缮</a>
+        </li><li class="chip-list__item">
+          <a class="typo-a"
+             href="?node=标签难度">标签难度</a>
+        </li></ol>
+    </li><li class="group-list__item">
+      <h2 class="section__title">比赛工单</h2>
+      <ol class="chip-list"><li class="chip-list__item">
+          <a class="typo-a"
+             href="?node=申请公开赛">申请公开赛</a>
+        </li></ol>
+    </li><li class="group-list__item">
+      <h2 class="section__title">文章工单</h2>
+      <ol class="chip-list"><li class="chip-list__item">
+          <a class="typo-a"
+             href="?node=撤销题解">撤销题解</a>
+        </li></ol>
+    </li><li class="group-list__item">
+      <h2 class="section__title">硬币工单</h2>
+      <ol class="chip-list"><li class="chip-list__item">
+          <a class="typo-a"
+             href="?node=添加硬币">添加硬币</a>
+        </li><li class="chip-list__item">
+          <a class="typo-a"
+             href="?node=删除硬币">删除硬币</a>
+        </li></ol>
+    </li><li class="group-list__item">
+      <h2 class="section__title">用户工单</h2>
+      <ol class="chip-list"><li class="chip-list__item">
+          <a class="typo-a"
+             href="?node=申请认证（待 CCF &amp; XCPC 认证上线后开通）">申请认证（待 CCF &amp; XCPC 认证上线后开通）</a>
+        </li><li class="chip-list__item">
+          <a class="typo-a"
+             href="?node=权限变更">权限变更</a>
+        </li><li class="chip-list__item">
+          <a class="typo-a"
+             href="?node=用户申诉">用户申诉</a>
+        </li><li class="chip-list__item">
+          <a class="typo-a"
+             href="?node=举报用户">举报用户</a>
+        </li></ol>
+    </li></ul></div>
+</div>
+  </div>
+</div>
+  </div>
+  <div class="footer">
+  <div class="row"><div class="columns">
+      <div class="row footer__links">
+      <div class="medium-3 large-2 columns footer__category expandable">
+        <h1>
+          状态
+          <span class="expand-icon">
+            <span class="icon icon-expand_more"></span>
+          </span>
+        </h1>
+        <div class="footer__category__expander"><ul class="footer__category__list">
+          <li class="footer__category__item"><a href="/record">评测队列</a></li>
+          <li class="footer__category__item"><a href="/status">服务状态</a></li>
+        </ul></div>
+      </div>
+      <div class="medium-3 large-2 columns footer__category expandable">
+        <h1>
+          开发
+          <span class="expand-icon">
+            <span class="icon icon-expand_more"></span>
+          </span>
+        </h1>
+        <div class="footer__category__expander"><ul class="footer__category__list">
+          <li class="footer__category__item"><a href="https://github.com/hydro-dev/Hydro" target="_blank">开源</a></li>
+        </ul></div>
+      </div>
+      <div class="medium-3 large-2 columns footer__category expandable">
+        <h1>
+          支持
+          <span class="expand-icon">
+            <span class="icon icon-expand_more"></span>
+          </span>
+        </h1>
+        <div class="footer__category__expander"><ul class="footer__category__list">
+          <li class="footer__category__item"><a href="/wiki/help">帮助</a></li>
+          <li class="footer__category__item"><a href="/wiki/about#contact">联系我们</a></li>
+        </ul></div>
+      </div>
+      <div class="medium-3 large-2 columns footer__category expandable end">
+        <h1>
+          关于
+          <span class="expand-icon">
+            <span class="icon icon-expand_more"></span>
+          </span>
+        </h1>
+        <div class="footer__category__expander"><ul class="footer__category__list">
+          <li class="footer__category__item"><a href="/wiki/about">关于</a></li>
+          <li class="footer__category__item"><a href="/wiki/about#privacy">隐私</a></li>
+          <li class="footer__category__item"><a href="/wiki/about#tos">服务条款</a></li>
+          <li class="footer__category__item"><a href="/wiki/about#contact">版权申诉</a></li>
+        </ul></div>
+      </div>
+    </div>
+      <div class="footer__extra-link clearfix">
+      <div class="footer__extra-left">
+        <ol class="clearfix">
+                    <li class="footer__extra-link-item nojs--hide" data-dropdown-target="#menu-footer-lang">
+            <span><span class="icon icon-global"></span> Language <span class="icon icon-expand_less"></span></span>
+            <ol class="dropdown-target menu" id="menu-footer-lang"><li class="menu__item"><a class="menu__link" href="/language/en">English</a></li><li class="menu__item"><a class="menu__link" href="/language/ko">한국어</a></li><li class="menu__item"><a class="menu__link" href="/language/zh">简体中文</a></li><li class="menu__item"><a class="menu__link" href="/language/zh_TW">正體中文</a></li></ol>
+          </li>
+          <li class="footer__extra-link-item">
+                          <a href="/legacy?legacy=true">兼容模式</a>
+                      </li>
+          <li class="footer__extra-link-item nojs--hide" data-dropdown-target="#menu-footer-theme">
+            <span><span class="icon icon-global"></span> 主题 <span class="icon icon-expand_less"></span></span>
+            <ol class="dropdown-target menu" id="menu-footer-theme">
+              <li class="menu__item"><a class="menu__link" href="/set_theme/light">亮色</a></li>
+              <li class="menu__item"><a class="menu__link" href="/set_theme/dark">暗色</a></li>
+            </ol>
+          </li>
+        </ol>
+      </div>
+      <div class="footer__extra-right">
+        <ol class="clearfix"><li class="footer__extra-link-item"></li><li class="footer__extra-link-item"><a href="https://oj.xzy404.top/discuss/6a490e22fa210ce82088d413">帮助中心</a> | <a href="https://oj.xzy404.top/discuss/6a2e56bc97b39b50e2a833fc">权限变更</a> | <a href="https://oj.xzy404.top/discuss/6a93e40d9a24e5db36359254">更新日志</a> | <a href="https://beian.miit.gov.cn/">浙ICP备2026040574号</a></li><li class="footer__extra-link-item"></li><li class="footer__extra-link-item">Worker 0, 21ms</li>
+          <!-- Prepare 0ms -->
+          <!-- Method 7ms -->
+          
+          
+          <li class="footer__extra-link-item">Powered by <a href="https://hydro.js.org">Hydro v5.0.4</a> Community</li>
+        </ol>
+      </div>
+    </div>
+  </div></div>
+</div>
+</div>
+<div class="dialog dialog--signin" style="display:none">
+  <div class="dialog__content">
+        <div class="dialog--signin__bg">
+      <div class="dialog--signin__side">
+        <h1>还没有账户？</h1>
+        <p>注册一个 CatchFish 通用账户，您就可以在我们提供的所有在线评测服务上提交代码、参与讨论。</p>
+        <div><a href="/register" class="inverse rounded button">现在注册</a></div>
+      </div>
+    </div>
+        <div class="dialog--signin__main">
+      <form action="/login" method="post">
+        <div class="dialog--signin__close-container supplementary">
+          <a name="dialog--signin__close" href="javascript:;">关闭</a>
+        </div>
+        <h1 class="dialog--signin__title">登录</h1>
+        <p class="dialog--signin__note">使用您的 CatchFish 通用账户</p>
+                <div class="row"><div class="columns">
+          <label class="material textbox">
+            用户名
+            <input name="uname" type="text" data-autofocus autocomplete="username webauthn">
+          </label>
+        </div></div>
+        <div class="row"><div class="columns">
+          <label class="material textbox">
+            密码
+            <input name="password" type="password">
+          </label>
+        </div></div>
+        <div class="row"><div class="columns">
+          <label class="checkbox">
+            <input type="checkbox" name="rememberme" class="checkbox">记住我
+          </label>
+        </div></div>
+        <div class="row"><div class="columns">
+          <input type="hidden" name="tfa" value="">
+          <input type="hidden" name="authnChallenge" value="">
+          <input type="submit" value="登录" name="login_submit" class="expanded rounded primary button">
+        </div></div>
+        <div class="row"><div class="columns">
+          <div class="supplementary text-center">
+            <a data-lostpass href="#">忘记密码或者用户名？</a>
+          </div>
+        </div></div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="/award/award.js"></script>
+        <script>
+      window.UiContextNew = '{}';
+      window.UserContextNew = '{}';
+    </script>
+  </body>
+</html>
